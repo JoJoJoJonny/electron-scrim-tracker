@@ -1,6 +1,7 @@
 import { createInterface } from "readline";
 import { execSync } from "child_process";
 import { readFileSync, writeFileSync } from "fs";
+import { rimrafSync } from "rimraf";
 
 const rl = createInterface({ input: process.stdin, output: process.stdout });
 
@@ -37,7 +38,10 @@ async function main() {
 		stdio: "inherit",
 	});
 
-	execSync("rm temp-config.json");
+	rimrafSync("temp-config.json");
+
+	// execSync("rm temp-config.json");
+
 
 	console.log("Build complete!");
 	rl.close();
